@@ -4,8 +4,9 @@
   "dependencies": {
     "express"                   : "3.x", 
     "jade"                    : "0.26.0",
-    "connect-assets"          : "2.2.1",
+    "connect-assets"          : "git://github.com/InkSpeck/connect-assets.git",
     "stylus"                  : "0.27.0",
+    "fluidity"                : "git://github.com/InkSpeck/fluidity.git",
     "markdown"                : "0.3.1",
     "which"                   : "*"
   }, 

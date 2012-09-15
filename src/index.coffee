@@ -1,7 +1,8 @@
 express = require 'express'
-stylus  = require 'stylus'
 assets = require 'connect-assets'
-fs   = require 'fs'
+stylus  = require 'stylus'
+fluidity = require 'fluidity'
+fs = require 'fs'
 
 publicDir = "./public"
 

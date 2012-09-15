@@ -1,7 +1,15 @@
-@import 'fluidity/fluidity'
-#container 
-  grid()
+@import 'fluidity'
 
-.hidden 
-  visibility hidden
-  opacity 0
+gridWidth = 50%  
+minWidth = 60px 
+
+body
+  grid()
+  border-right 1px solid lightgray3  
+
+sidebar
+  background-color lightgray3
+  grid_20()
+
+#container 
+  grid_80()
