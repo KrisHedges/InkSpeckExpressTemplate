@@ -20,10 +20,14 @@ $ ->
       watchOrientationChange()
     watchOrientationChange()
 
+   # Here's where the Slide events are called
     $('sidebar ul li').bind "click", ->
+      $('.back').addClass("show")
       fluidSlideLeft()
     $('.topbar').bind "click", ->
+      $('.back').removeClass("show")
       fluidSlideRight()
+
 
   if navigator.userAgent.match /iPhone/i or navigator.userAgent.match /iPod/i
     forIphone()

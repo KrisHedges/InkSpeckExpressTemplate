@@ -112,9 +112,9 @@ message()
 
 
 show()
-  opacity 1
-  visibility visible
-  transition opacity 1s linear
+  opacity 1 !important
+  visibility visible !important
+  transition opacity 0.05s linear !important
 
 .show
   show()
@@ -136,7 +136,13 @@ topbar()
   .topbar-inner
     grid(100%,grid-min-width)
     overflow hidden
+    .back
+      float left
+      margin 1.5em
+      visibility hidden
+      opacity 0
     p
+      float left
       margin 1.5em
   button, .button
     margin 1.4em 1em
