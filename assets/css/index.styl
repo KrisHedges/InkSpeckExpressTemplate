@@ -1,19 +1,259 @@
+base-color = #090909
+grid-width = 100%
+grid-min-width = 320px
 @import 'fluidity'
+@import 'fluidity/forms'
+darker-color1 = #252525
+darker-color2 = #353535
+darker-color3 = #454545
 
-gridWidth = 70%  
-minWidth = 600px 
-
+/* These Below Need Added Somewhere Else in normalize? */
 body
+  height 100%
+  margin 0
+  padding 0
+html
+  height 100%
+  margin 0
+  padding 0
+
+//
+// Universal Components
+// -----------------------
+scrollview(trackcolor = none, scrollcolor = darker-color2, borders = 0 0 7px 7px)
+  overflow-x hidden
+  overflow-y auto
+  &::-webkit-scrollbar
+  &::-moz-scrollbar
+    width 7px
+  &::-webkit-scrollbar-track
+  &::-moz-scrollbar-track
+    border-radius 0px
+    background trackcolor
+  &::-webkit-scrollbar-thumb
+  &::-moz-scrollbar-thumb
+    background scrollcolor
+    border-radius borders
+    opacity 0
+  -webkit-overflow-scrolling touch
+  -moz-overflow-scrolling touch
+
+listview()
+  width 100%
+  height 92%
+  margin 0 auto
+  padding 0
+  border-width 0px 0px 1px 0px
+  border-style solid
+  border-color darken(darker-color1, 20%)
+  scrollview()
+  li
+    width 100% -1px
+    margin 0
+    display block
+    border-width 0px 1px 1px 1px
+    border-style solid
+    border-color darken(darker-color1, 20%)
+    &:first-child
+      border-width 1px 1px 1px 1px
+      border-style solid
+      border-color darken(darker-color1, 20%)
+    &:last-child
+      margin-bottom 4em
+    a
+      text-decoration none
+      width 100%
+      height 100%
+      padding 1em 0
+      display block
+      color lighter-color2
+      background-color darker-color1
+      &:hover
+        background-color darker-color2
+      span
+        display block
+        width 88%
+        margin 0 15% 0 5%
+
+message()
+  position fixed
+  top 64px
+  left 50%
+  z-index 16
+  width 66%
+  background linear-gradient(to bottom right, darker-color3, darker-color2)
+  box-shadow 0px 0px 7px darker-color1
+  color lighten(lighter-color3, 20%)
+  margin-left -35%
+  opacity 0
+  visibility hidden
+  transition visibility 0s 0.5s, opacity 0.5s linear
+  cursor pointer
+  border-radius 3px
+  border 1px solid darker-color2
+  &:before
+    content "\00d7"
+    width 20px
+    height 20px
+    margin 6px
+    float right
+    font-size 1.2em
+  .controls
+    display block
+    width 95%
+    margin 0 auto
+    padding 0
+
+
+.message
+  message()
+
+
+
+
+show()
+  opacity 1
+  visibility visible
+  transition opacity 1s linear
+
+.show
+  show()
+
+topbar()
+  small()
+  width 100%
+  height 60px
+  position fixed
+  top 0
+  left 0
+  background-color darker-color1
+  color lighter-color2
+  z-index 15 !important
+  opacity(1.0)
+  border-width 0px 0px 1px 0px
+  border-style solid
+  border-color darken(darker-color1, 20%)
+  .topbar-inner
+    grid(100%,grid-min-width)
+    overflow hidden
+    p
+      margin 1.5em
+  button, .button
+    margin 1.4em 1em
+    font-weight bold
+    float left
+    border 0
+    small()
+
+.topbar
+  topbar()
+
+topbarfix()
+  margin 60px 0px 0px 0px
+  &:after
+    content "\00a0"
+    padding-bottom 60px
+
+//
+//Site Specifics
+// -------------------
+a
+  color darker-color3
+h1
+  line-height 1.2em
+
+//
+// Initial Layout
+//---------------------
+#container
   grid()
-  border-right 1px solid lightgray3  
+  height 100%
+  background-color lighten(lighter-color3,10%)
+
+#content
+  grid-space(68%)
+  height 91%
+  padding 2% 6%
+  background-color lighten(lighter-color3,10%)
+  scrollview()
+  topbarfix()
 
 sidebar
-  background-color lightgray3
-  grid_20()
-
-#container 
-  grid_80()
+  grid-space(32%)
+  padding 0px
+  background-color darker-color1
+  min-height 100%
+  topbarfix()
   ul
-    list-style-type disc
-    margin 0 0 0 4em
+    listview()
 
+//
+//  Responsive Layouts
+// ---------------------
+// iPad Landscape
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px)
+  #container
+    grid()
+  #content
+    grid-space(70%)
+    padding 2% 6%
+    topbarfix()
+  sidebar
+    grid-space(30%)
+    topbarfix()
+
+// iPad Portrait
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait)
+  body
+    font-size .9em
+  #container
+    grid()
+  #content
+    grid-space(70%)
+    padding 2% 6%
+    float right
+    topbarfix()
+  sidebar
+    grid-space(30%)
+    float right
+    topbarfix()
+
+// Phone Portrait
+@media screen and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: portrait)
+  .message
+    width 90%
+    margin-left -45%
+  #container
+    grid(100%, 200%)
+    position absolute
+    top 0px
+    left 0px
+    transition left 300ms cubic-bezier(0.000, 0.000, 0.000, 0.995)
+  #content
+    grid-space(50%)
+    padding 2% 2%
+    float right
+    topbarfix()
+  sidebar
+    grid-space(50%)
+    float right
+    topbarfix()
+
+//Phone Landscape
+@media screen and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: landscape)
+  .message
+    width 90%
+    margin-left -45%
+  #container
+    grid(100%, 200%)
+    position absolute
+    transition left 300ms cubic-bezier(0.000, 0.000, 0.000, 0.995)
+  #content
+    grid-space(50%)
+    padding 2% 2%
+    float right
+    topbarfix()
+  sidebar
+    grid-space(50%)
+    float right
+    topbarfix()
