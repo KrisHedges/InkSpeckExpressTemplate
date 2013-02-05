@@ -1,5 +1,5 @@
 !!! 5
-html
+html.notouch
   head
     meta(charset='utf-8')
     title Fluidity UI
@@ -9,18 +9,20 @@ html
     meta(name="apple-mobile-web-app-capable", content="yes")
     meta(name="apple-mobile-web-app-status-bar-style", content="black")
     link(rel="apple-touch-icon-precomposed", href="/images/icon.png")
+    link(rel="apple-touch-startup-image", href="images/phone-splash.png")
     link(rel="apple-touch-startup-image", href="images/landscape-launch.png", media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)")
     link(rel="apple-touch-startup-image", href="images/portrait-launch.png", media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)")
     // CSS
-    != css('index')
+    != css('responsive')
     // JS
-    != js('http://code.jquery.com/jquery.min.js')
+    != js('zepto')
     != js('index')
   body
     .topbar
       .topbar-inner
-        span.back Back
-        p Fluidity UI
+        #left-controls
+          .back Back
+        #logo Fluidity UI
     .message
       p Nulla vitae elit libero, a pharetra augue. Etiam porta sem malesuada magna mollis euismod.
       .controls

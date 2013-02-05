@@ -13,7 +13,6 @@ pkg = JSON.parse fs.readFileSync('./package.json')
 testCmd = pkg.scripts.test
 startCmd = pkg.scripts.start
 
-
 log = (message, color, explanation) ->
   console.log color + message + reset + ' ' + (explanation or '')
 
@@ -42,4 +41,3 @@ task 'dev', 'start dev env', ->
   supervisor.stdout.pipe process.stdout
   supervisor.stderr.pipe process.stderr
   log 'Watching js files and running server', green
-

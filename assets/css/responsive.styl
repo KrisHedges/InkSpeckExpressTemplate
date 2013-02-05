@@ -1,0 +1,139 @@
+base-color = #090909
+base-font-size = 1em
+base-line-height = 1.3em
+grid-width = 100%
+grid-min-width = 320px
+@import 'fluidity'
+@import 'forms'
+@import 'components'
+
+darker-color1 = #252525
+darker-color2 = #454545
+darker-color3 = #656565
+
+// ---------------------
+//Site Specifics
+// -------------------
+input[type='range']
+  slider()
+a
+  color darker-color3
+
+//---------------------
+// Base Layout
+//---------------------
+#container
+  grid()
+  height 100%
+  background-color lighten(lighter-color3,10%)
+
+#content
+  grid-space(72%)
+  height 91%
+  padding 2% 6%
+  background lighten(lighter-color3,70%)
+  scrollview()
+  topbarfix()
+  form
+    form()
+
+sidebar
+  grid-space(28%)
+  padding 0px
+  background-color darker-color1
+  min-height 100%
+  topbarfix()
+  #sidebar-list
+    listview()
+    background-color darker-color1
+    width 100%
+
+//  Responsive Layouts
+// ---------------------
+// iPad Landscape Layout
+// ---------------------
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px)
+  #container
+    grid()
+  #content
+    grid-space(70%)
+    padding 2% 6%
+    topbarfix()
+    form
+      .name
+        grid-space(50%)
+      .email-url
+        grid-space(50%)
+  sidebar
+    grid-space(30%)
+    topbarfix()
+    #sidebar-list
+      margin-left 1px
+
+// ---------------------
+// iPad Portrait Layout
+// ---------------------
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait)
+  body
+    font-size .9em
+  #container
+    grid()
+  #content
+    grid-space(70%)
+    padding 2% 6%
+    float right
+    topbarfix()
+    form
+      .name
+        grid-space(100%)
+      .email-url
+        grid-space(100%)
+  sidebar
+    grid-space(30%)
+    float right
+    topbarfix()
+    #sidebar-list
+      margin-left -1px
+
+// ---------------------
+// iPhone Portrait Layout
+// ---------------------
+@media screen and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: portrait)
+  .message
+    width 90%
+    margin-left -45%
+  #container
+    carousel(2,300ms)
+  #content
+    grid-space(50%)
+    padding 2% 2%
+    float right
+    topbarfix()
+  sidebar
+    grid-space(50%)
+    float right
+    topbarfix()
+
+// ---------------------
+// iPhone Landscape Layout
+// ---------------------
+@media screen and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: landscape)
+  .message
+    width 90%
+    margin-left -45%
+  #container
+    carousel(2,300ms)
+  #content
+    grid-space(50%)
+    padding 2% 2%
+    float right
+    topbarfix()
+    form
+      .name
+        grid-space(50%)
+      .email-url
+        grid-space(50%)
+  sidebar
+    grid-space(50%)
+    float right
+    topbarfix()
