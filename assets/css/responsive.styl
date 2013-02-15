@@ -14,10 +14,14 @@ darker-color3 = #656565
 // ---------------------
 //Site Specifics
 // -------------------
+
 input[type='range']
-  slider()
+  slider(40px, 30px)
 a
   color darker-color3
+
+body
+  color darker-color2
 
 //---------------------
 // Base Layout
@@ -34,7 +38,7 @@ a
   background lighten(lighter-color3,70%)
   scrollview()
   topbarfix()
-  form
+  #example-form
     form()
 
 sidebar

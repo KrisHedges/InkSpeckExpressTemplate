@@ -8,57 +8,73 @@ html
 // Universal Components
 // -----------------------
 
-sliderout(fl-width, fl-height, output-background, output-color)
-  position relative
-  display inline-block
-  top (fl-height * -2.3)
-  left 0
-  width fl-width
-  height fl-height
-  background-color output-background
-  color output-color
-  border-radius 3px
-  padding 0.4em 0.2em 1em 0.2em
-  box-sizing border-box
-  text-align center
-  transition left 0s linear
-  transition-delay 0s
-  z-index 2
-  &:after
-    content ""
-    display block
-    position absolute
-    top fl-height
-    left 0
-    margin-left (fl-width/3.4)
-    padding 0px
-    color black
-    z-index 1
-    border-top 1em solid darker-color2
-    border-left 0.5em solid transparent
-    border-right 0.5em solid transparent
-
-slider(fl-width=40px, fl-height=30px, track-color=darker-color1, thumb-background=lighter-color3, thumb-border-color=lighter-color2, output-background=darker-color2, output-color=lighter-color3)
+slider(
+  fl-width=40px,
+  fl-height=30px,
+  track-color=darker-color1,
+  thumb-background= lighter-color3,
+  thumb-border= 1px solid lighter-color2,
+  output-background=darker-color2,
+  output-color=lighter-color3)
   width 100%
   appearance none !important
   background-color track-color
   height ((fl-height / 2) / 1.2)
   outline none !important
   border-radius 3px
-  margin-top 2em
+  padding 0
+  margin (fl-height+2) 0 0 0
   &::-webkit-slider-thumb
-    position relative
     appearance none !important
     outline none !important
     background thumb-background
-    border 1px solid thumb-border-color
-    margin 0px
-    padding 0px
+    border thumb-border
+    margin 0
+    padding 0
     width fl-width
     height fl-height
     border-radius 3px
   & + output
     sliderout(fl-width,fl-height, output-background, output-color)
+  & + input[type="range"]
+    margin (fl-height * 2) 0 0 0!important
+
+
+sliderout(fl-width, fl-height, output-background, output-color)
+  pointer = (fl-height/3)
+  position relative
+  left 0
+  display inline-block
+  top (((fl-height * 2) + (pointer/2)) *-1)
+  margin 0
+  padding 0
+  font-size (fl-height * 0.45)
+  width fl-width
+  height fl-height
+  background-color output-background
+  color output-color
+  border-radius 3px
+  box-sizing border-box
+  text-align center
+  translate3d 0 0 0
+  transition left 0s linear
+  transition-delay 0s
+  line-height fl-height
+  vertical-align middle
+  &:after
+    content ""
+    display block
+    position absolute
+    top fl-height
+    left 50%
+    margin-left (pointer/2) *-1
+    padding 0
+    color black
+    z-index 1
+    border-top pointer solid darker-color2
+    border-left (pointer/2) solid transparent
+    border-right (pointer/2) solid transparent
+
 
 backbutton(bdr-color, bg-color)
   display block
@@ -113,7 +129,7 @@ scrollview(trackcolor = none, scrollcolor = darker-color2, borders = 0 0 7px 7px
 
 listview()
   width 100%
-  height 91%
+  height 95%
   margin 0 auto
   padding 0
   border-width 0px 0px 0px 0px
@@ -164,6 +180,7 @@ message()
   margin-left -35%
   opacity 0
   visibility hidden
+  translate3d 0 0 0
   transition visibility 0s 0.5s, opacity 0.5s linear
   cursor pointer
   border-radius 3px
@@ -187,6 +204,7 @@ message()
 show()
   opacity 1 !important
   visibility visible !important
+  translate3d 0 0 0
   transition opacity 0.05s linear !important
 
 .show
@@ -245,5 +263,6 @@ carousel(items=2, speed=300ms)
   position fixed
   top 0%
   left 0%
+  translate3d 0 0 0
   transition left speed cubic-bezier(0.000, 0.000, 0.000, 0.995)
   overflow-x hidden

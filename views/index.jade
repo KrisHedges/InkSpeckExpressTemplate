@@ -3,58 +3,62 @@ block content
   section
     #content
        h1 Tristique Porta Malesuada Etiam
-       #example-form
-         form
-           fieldset.name
-             legend Name
-             label First:
-             input(type="text", placeholder="First Name")
-             label Last:
-             input(type="text", placeholder="Last Name")
-           fieldset.email-url
-             legend Email/URL
-             label Email:
-             input(type="email", placeholder="your@email.com")
-             label URL:
-             input(type="url", placeholder="http://www.yourwebsite.com")
-           fieldset.options
-             legend Options
-             label Choose an Option:
-             select
-               option Option 1
-               option Option 2
-               option Option 3
-               option Option 4
-           fieldset.date
-             legend Date
-             label Date:
-             input(type="date", placeholder="mm/dd/yyyy")
-           fieldset.slider
-             legend Slider
-             input(type='range', min='1', max='100', value='1')
-             input(type='range', min='1', max='100', value='1')
-             output(value="1") 1
-           fieldset.sex
-             legend Sex
-             label(for="male") Male:
-             input(type="radio", name="sex", id="male", value="male")
-             label(for="female") Female:
-             input(type="radio", name="sex", id="female", value="female")
-           fieldset.allergies
-             legend Allergies
-             label(for="checkbox1") Peanuts:
-             input(type="checkbox", id="checkbox1", name="checkbox1", value="Peanuts")
-             label(for="checkbox2") Grass:
-             input(type="checkbox", id="checkbox2", name="checkbox2", value="Grass")
-             label(for="checkbox3") Dust:
-             input(type="checkbox", id="checkbox3", name="checkbox3", value="Dust")              label(for="checkbox3") Dust
-           fieldset.description
-             legend Description
-             label Describe things:
-             textarea
-             button Submit
-             button Cancel
-
+       form#example-form
+         fieldset.name
+           legend Name
+           label First:
+           input(type="text", placeholder="First Name")
+           label Last:
+           input(type="text", placeholder="Last Name")
+         fieldset.email-url
+           legend Email/URL
+           label Email:
+           input(type="email", placeholder="your@email.com")
+           label URL:
+           input(type="url", placeholder="http://www.yourwebsite.com")
+         fieldset.options
+           legend Options
+           label Choose an Option:
+           select
+             option Option 1
+             option Option 2
+             option Option 3
+             option Option 4
+         fieldset.date
+           legend Date
+           label Date:
+           input(type="date", placeholder="mm/dd/yyyy")
+         fieldset.slider
+           legend Slider
+           input(type='range', min='1', max='100', value='1')
+           input(type='range', min='-30', max='50', value='-30')
+           output(value="-30") -30
+           input(type='range', min='0', max='8', value='0', step='2')
+           output(value="0") 0
+           input(type='range', min='1', max='100', value='1')
+           output(value="1") 1
+           input(type='range', min='0', max='9', value='0', step='3')
+           output(value="0") 0
+         fieldset
+           legend Choices
+           label(for="thing1") One Thing:
+           input(type="radio", name="choice", id="thing1", value="thing1")
+           label(for="thing2") Another Thing:
+           input(type="radio", name="choice", id="thing2", value="thing2")
+         fieldset
+           legend Buffet
+           label(for="checkbox1") Salad:
+           input(type="checkbox", id="checkbox1", name="checkbox1", value="Salad")
+           label(for="checkbox2") Meat:
+           input(type="checkbox", id="checkbox2", name="checkbox2", value="Meat")
+           label(for="checkbox3") Pudding:
+           input(type="checkbox", id="checkbox3", name="checkbox3", value="Pudding")
+         fieldset.description
+           legend Description
+           label Describe things:
+           textarea
+           button Submit
+           button Cancel
     sidebar
       ul#sidebar-list
         li

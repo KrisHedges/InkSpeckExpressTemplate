@@ -10,12 +10,13 @@ cal = unquote("url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAA
 // Make all forms have space below them
 // --------------------------------------------------
 form
-  grid(95%,95%)
+  grid(100%,100%)
   margin 0 0 base-line-height
 
 fieldset
   padding (base-font-size * 2) 0 0 0 !important
   border 0
+  margin-bottom 1em
 
 legend
   display block
@@ -25,7 +26,6 @@ legend
   margin 0
   font-size base-font-size * 1.2
   line-height base-line-height * 2
-  color darker-color2
   border 0
   border-bottom 1px solid lighter-color2
 
@@ -53,12 +53,8 @@ input[type="tel"],
   margin-bottom base-line-height
   font-size base-font-size
   line-height base-line-height
-  color darker-color3
   vertical-align middle
   box-sizing border-box
-
-input[type="range"] + input[type="range"]
-  margin-top 4em
 
 textarea
   min-height base-line-height * 6
@@ -81,6 +77,7 @@ input[type="datetime-local"]
   border 1px solid lighter-color2
   border-radius 3px
   box-sizing border-box
+  color darker-color2
   &::-webkit-inner-spin-button
   &::-webkit-outer-spin-button
     appearance none
@@ -93,8 +90,14 @@ input[type="datetime-local"]
     height 100%
     border 1px solid
     background-color lighten(lighter-color3, 30%)
-    color darker-color2
     opacity 0
+  &:hover,
+  &:focus,
+  &:active
+    border 1px solid lighter-color2
+    box-shadow inset 0 0px 3px 0px lighten(lighter-color2,15%)
+    background-color lighten(lighter-color3, 15%)
+    border-radius 3px
 
 input[type="submit"],
 button
@@ -103,8 +106,17 @@ button
   padding 0.5em 0.5em
   border 1px solid lighter-color2
   box-shadow inset 0 0px 0px rgba(0,0,0,0)
+  translate3d 0 0 0
   transition border linear .2s, box-shadow linear .2s
-  border-radius 3px
+  border-radius 0px
+  color darker-color2
+  &:hover,
+  &:focus,
+  &:active
+    border 1px solid lighter-color2
+    box-shadow inset 0 0px 3px 0px lighten(lighter-color2,15%)
+    background-color lighten(lighter-color3, 15%)
+    border-radius 3px
 
 output
   display block
@@ -122,18 +134,23 @@ select
   padding 0.5em 0.5em
   border 1px solid lighter-color2
   box-shadow inset 0 0px 0px rgba(0,0,0,0)
+  translate3d 0 0 0
   transition border linear .2s, box-shadow linear .2s
   border-radius 3px
+  color darker-color2
   option
     appearance none
     outline none
     padding 0
     margin-left 0
     margin-right 3em
-  &:focus
-    border-color darken(lighter-color2, 3%)
-    outline none
-    box-shadow inset 0 1px 7px 1px lighter-color3
+  &:hover,
+  &:focus,
+  &:active
+    border 1px solid lighter-color2
+    box-shadow inset 0 0px 3px 0px lighten(lighter-color2,15%)
+    background-color lighten(lighter-color3, 15%)
+    border-radius 3px
 
 // CHECKBOXES & RADIOS
 // -------------------
@@ -146,12 +163,14 @@ input[type="checkbox"]
   padding 0.6em
   background-color lighten(lighter-color3, 30%)
   border 1px solid lighter-color2
+  translate3d 0 0 0
   transition background-color linear .12s, box-shadow linear .12s, border linear .12s
   transition-delay 0s
   &:checked
     appearance none
     outline none
     background-color darker-color2
+    transform scale(0.9,0.9)
 
 input[type="radio"]
   border-radius 50%
@@ -178,13 +197,14 @@ input[type="color"]
   appearance none
   border 1px solid lighter-color2
   box-shadow inset 0 0px 0px rgba(0,0,0,0)
+  translate3d 0 0 0
   transition border linear .2s, box-shadow linear .2s
   border-radius 0px
   &:focus
     border-color darken(lighter-color2, 3%)
     border-radius 3px
     outline none
-    box-shadow inset 0 1px 7px 1px lighter-color3
+    box-shadow inset 0 1px 9px 1px lighter-color3
 
 // DISABLED STATE
 // --------------
@@ -209,7 +229,6 @@ input[type="checkbox"][readonly]
 input:focus:invalid,
 textarea:focus:invalid,
 select:focus:invalid
-  color lighter-color2
   border-color #ee5f5b
   &:focus
     border-color darken(#ee5f5b, 10%)
