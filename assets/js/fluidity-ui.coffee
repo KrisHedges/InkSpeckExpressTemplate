@@ -38,11 +38,11 @@ $ ->
       sliders.map ->
         flui.slider $(this)
 
-    carouselLeft: (el)->
+    horizontalLeft: (el)->
       left = parseInt el.css('left')
       el.css 'left', "#{left - 100}%"
 
-    carouselRight: (el)->
+    horizontalRight: (el)->
       left = parseInt el.css('left')
       el.css 'left', "#{left + 100}%"
 
@@ -57,6 +57,10 @@ $ ->
         if startTopScroll + el.offsetHeight >= el.scrollHeight
           el.scrollTop = el.scrollHeight - el.offsetHeight - 1
       , false
+
+    inscrollable: (el)->
+      el.on 'touchmove', (e)->
+        e.preventDefault()
 
     orientable: ->
       if mobile
@@ -123,6 +127,9 @@ $ ->
             else
               chkbox.prop 'checked', true
             e.preventDefault()
+
+# More UI
+
 
     init: ->
       flui.orientable()

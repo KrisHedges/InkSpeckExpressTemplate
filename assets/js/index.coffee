@@ -2,13 +2,12 @@ $ ->
   if flui.touchable
     flui.scrollable $("#content")
     flui.scrollable $("#sidebar-list")
-    $('.topbar').on 'touchmove', (e)->
-      e.preventDefault()
+    flui.inscrollable $('.topbar')
 
   if flui.mobile
     $('sidebar ul li').tap ()->
-      flui.carouselLeft($("#container"))
+      flui.horizontalLeft($("#container"))
       $('.back').addClass("show")
     $('.back').tap ()->
-      flui.carouselRight($("#container"))
+      flui.horizontalRight($("#container"))
       $('.back').removeClass("show")
