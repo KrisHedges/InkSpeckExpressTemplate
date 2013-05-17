@@ -2,8 +2,6 @@ $ ->
   touchable = false
   mobile = false
 
-  $('html').removeClass 'preload'
-
   initTouch = ->
     p = navigator.platform
     if (p == 'iPad') or (p == 'iPhone') or (p == 'iPod')
@@ -26,6 +24,13 @@ $ ->
   window.flui =
     touchable: touchable
     mobile: mobile
+
+    delayTransitionsOnLoad: (time)->
+      if time is 0 or time is "undefined"
+        time = 300
+      setTimeout ->
+        $('html').removeClass 'preload'
+      , time
 
     console: (message) ->
       initDebugger() unless $("#flui-debug").length > 0
@@ -93,11 +98,14 @@ $ ->
       sliders.map ->
         flui.slider $(this)
 
-    show: (el) ->
+    show: (el, time) ->
       el.css 'display', 'block'
-      setTimeout ->
+      if time is 0 or time is "undefined"
         el.addClass('show')
-      , 400
+      else
+        setTimeout ->
+          el.addClass('show')
+        , time
 
     hide: (el, time)->
       el.removeClass('show')
@@ -120,21 +128,21 @@ $ ->
 
     flyInMenu: (el, direction) ->
       left = parseInt el.css('left')
+      width = parseInt el.css('width')
+      screenwidth = parseInt $('body').css('width')
+      menuwidth = Math.round(((width / screenwidth) * 100) * -1)
       if direction
         if direction is 'left'
-          left = parseInt el.css('left')
-          diff = left - 100
-          if left >= 0
-            el.css 'left', "#{left - 100}%"
+          if left < -1
+            el.css 'left', "0%"
           else
-            el.css 'left', "#{left + 100}%"
+            el.css 'left', "#{menuwidth}%"
         if direction is 'right'
-          left = parseInt el.css('left')
-          diff = left - 100
-          if left > 100
-            el.css 'left', "#{100 - diff}%"
+          if left > 99
+            el.css 'left', "#{(100 +menuwidth)}%"
           if left < 100
-            el.css 'left', "#{100 - diff}%"
+            el.css 'left', "100%"
+
 
     flyAwayMenu: (el, main, direction) ->
       left = parseInt el.css('left')

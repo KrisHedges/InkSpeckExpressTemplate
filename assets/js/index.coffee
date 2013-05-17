@@ -1,8 +1,10 @@
 $ ->
   #Setup
-  flui.hide $('.back'), 0
+  flui.hide $('.back')
   flui.show $('.leftmenu')
   flui.show $('.rightmenu')
+  flui.delayTransitionsOnLoad(300)
+
   main = $('#container')
 
   #Clicks
@@ -36,12 +38,13 @@ $ ->
     $('.leftmenu').on 'tap', (e)->
       e.preventDefault()
       flui.flyAwayMenu($("#leftslidemenu"), main, 'left')
+
     $("#leftslidemenu").swipeLeft ->
       flui.flyAwayMenu($("#leftslidemenu"), main, 'left')
 
     $('.rightmenu').tap (e)->
-     e.preventDefault()
-     flui.flyInMenu($("#rightslidemenu"), 'right')
+      e.preventDefault()
+      flui.flyInMenu($("#rightslidemenu"), 'right')
 
     $("#rightslidemenu").swipeRight ->
-     flui.flyInMenu($("#rightslidemenu"), 'right')
+      flui.flyInMenu($("#rightslidemenu"), 'right')
