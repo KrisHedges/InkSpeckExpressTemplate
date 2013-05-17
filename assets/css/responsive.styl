@@ -20,10 +20,86 @@ a
   color darker-color3
 body
   color darker-color2
+  overflow-x hidden
+
+.message
+  modal()
+  width 90%
+  margin-left -45%
 
 //---------------------
 // Base Layout
 //---------------------
+
+.topbar-inner
+  #left-controls
+    grid-space(20%)
+    .back
+      display none
+      hide()
+      backbutton()
+    .leftmenu
+      menubutton()
+  #logo
+    grid-space(60%)
+    text-align center
+    margin-top 0.9em
+    font-size 1.5em
+  #right-controls
+    grid-space(20%)
+    .rightmenu
+      menubutton()
+      float right
+      margin-right 0.8em
+
+
+#leftslidemenu
+  flyawaymenu(left, 300ms, 28%)
+  topbarfix()
+  background black
+  ul
+    listview(darken(darker-color1, 80%), darker-color1)
+    background none
+
+#rightslidemenu
+  flyinmenu(right, 300ms, 35%)
+  topbarfix()
+  background rgba(black,80%)
+  ul
+    grid(100%,100%)
+    height 100%
+    scrollview()
+    margin-top 0.75%
+    li
+      grid-space(32%)
+      min-height 25%
+      height auto
+      background darker-color1
+      box-shadow inset 0px 0px 6em 1em darken(darker-color1, 10%)
+      margin 0.5% 0% 0.5% 1%
+      text-align center
+      border-radius 3px
+      border 2px solid black
+      box-sizing border-box
+      html.notouch &:hover,
+      &:active,
+      &focus
+        cursor pointer
+        background darken(darker-color1, 30%)
+        box-shadow inset 0px 0px 6em 1em darken(darker-color1, 40%)
+      a
+        display block
+        text-decoration none
+        margin 1em 0.5em
+        font-size 0.9em
+        text-select none
+        color lighter-color1
+    li:nth-child(3n+ 1)
+      clear left
+    li:last-child
+      clear left
+      margin-bottom 128px
+
 #container
   grid()
   height 100%
@@ -53,6 +129,14 @@ sidebar
 // iPad Landscape Layout
 // ---------------------
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px)
+  #leftslidemenu
+    flyawaymenu(left, 300ms, 80%)
+    topbarfix()
+  #rightslidemenu
+    flyinmenu(right, 300ms, 100%)
+    font-size 0.8em
+    line-height 1.2em
+    topbarfix()
   #container
     grid()
   #content
@@ -74,6 +158,14 @@ sidebar
 // iPad Portrait Layout
 // ---------------------
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait)
+  #leftslidemenu
+    flyawaymenu(left, 300ms, 80%)
+    topbarfix()
+  #rightslidemenu
+    flyinmenu(right, 300ms, 100%)
+    font-size 0.8em
+    line-height 1.2em
+    topbarfix()
   body
     font-size .9em
   #container
@@ -99,9 +191,14 @@ sidebar
 // iPhone Portrait Layout
 // ---------------------
 @media screen and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: portrait)
-  .message
-    width 90%
-    margin-left -45%
+  #leftslidemenu
+    flyawaymenu(left, 300ms, 80%)
+    topbarfix()
+  #rightslidemenu
+    flyinmenu(right, 300ms, 100%)
+    font-size 0.8em
+    line-height 1.2em
+    topbarfix()
   #container
     carousel(2,300ms)
   #content
@@ -118,9 +215,14 @@ sidebar
 // iPhone Landscape Layout
 // ---------------------
 @media screen and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: landscape)
-  .message
-    width 90%
-    margin-left -45%
+  #leftslidemenu
+    flyawaymenu(left, 300ms, 80%)
+    topbarfix()
+  #rightslidemenu
+    flyinmenu(right, 300ms, 100%)
+    font-size 0.8em
+    line-height 1.2em
+    topbarfix()
   #container
     carousel(2,300ms)
   #content

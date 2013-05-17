@@ -1,5 +1,5 @@
 !!! 5
-html.notouch
+html.notouch.preload
   head
     meta(charset='utf-8')
     title Fluidity UI
@@ -18,15 +18,101 @@ html.notouch
     .topbar
       .topbar-inner
         #left-controls
-          .back Back
+          .back
+          .leftmenu
         #logo Fluidity UI
+        #right-controls
+          .rightmenu
     .message
       p Nulla vitae elit libero, a pharetra augue. Etiam porta sem malesuada magna mollis euismod.
       .controls
         button Ok
         button Cancel
+    #leftslidemenu
+      ul
+        li
+          a(href='#')
+            span First Left Side: Non commodo luctus, nisi erat porttitor.
+        li
+          a(href='#')
+            span Duis mollis, est non commodo luctus, nisi erat porttitor.
+        li
+          a(href='#')
+            span Duis mollis, est non commodo luctus, nisi erat porttitor.
+        li
+          a(href='#')
+            span Duis mollis, est non commodo luctus, nisi erat porttitor.
+        li
+          a(href='#')
+            span Duis mollis, est non commodo luctus, nisi erat porttitor.
+        li
+          a(href='#')
+            span Duis mollis, est non commodo luctus, nisi erat porttitor.
+        li
+          a(href='#')
+            span Duis mollis, est non commodo luctus, nisi erat porttitor.
+        li
+          a(href='#')
+            span Duis mollis, est non commodo luctus, nisi erat porttitor.
+        li
+          a(href='#')
+            span Duis mollis, est non commodo luctus, nisi erat porttitor.
+        li
+          a(href='#')
+            span Duis mollis, est non commodo luctus, nisi erat porttitor.
+        li
+          a(href='#')
+            span Duis mollis, est non commodo luctus, nisi erat porttitor.
+        li
+          a(href='#')
+            span Duis mollis, est non commodo luctus, nisi erat porttitor.
+        li
+          a(href='#')
+            span Duis mollis, est non commodo luctus, nisi erat porttitor.
+    #rightslidemenu
+      ul
+        li
+          a(href='#')
+            span First Right Side: Non commodo luctus, nisi erat porttitor.
+        li
+          a(href='#')
+            span Duis mollis, est non commodo luctus, nisi erat porttitor.
+        li
+          a(href='#')
+            span Duis mollis, est non commodo luctus, nisi erat porttitor.
+        li
+          a(href='#')
+            span Duis mollis, est non commodo luctus, nisi erat porttitor.
+        li
+          a(href='#')
+            span Duis mollis, est non commodo luctus, nisi erat porttitor.
+        li
+          a(href='#')
+            span Duis mollis, est non commodo luctus, nisi erat porttitor.
+        li
+          a(href='#')
+            span Duis mollis, est non commodo luctus, nisi erat porttitor.
+        li
+          a(href='#')
+            span Duis mollis, est non commodo luctus, nisi erat porttitor.
+        li
+          a(href='#')
+            span Duis mollis, est non commodo luctus, nisi erat porttitor.
+        li
+          a(href='#')
+            span Duis mollis, est non commodo luctus, nisi erat porttitor.
+        li
+          a(href='#')
+            span Duis mollis, est non commodo luctus, nisi erat porttitor.
+        li
+          a(href='#')
+            span Duis mollis, est non commodo luctus, nisi erat porttitor.
+        li
+          a(href='#')
+            span Duis mollis, est non commodo luctus, nisi erat porttitor.
     #container
       block content
+
 // JS
 != js('zepto')
 != js('fluidity-ui')

@@ -3,7 +3,10 @@ html
   height 100%
   margin 0
   padding 0
+  position relative
 
+.preload *
+  transition none !important
 //
 // Universal Components
 // -----------------------
@@ -56,11 +59,11 @@ sliderout(fl-width, fl-height, output-background, output-color)
   border-radius 3px
   box-sizing border-box
   text-align center
-  translate3d 0 0 0
   transition left 0s linear
   transition-delay 0s
   line-height fl-height
   vertical-align middle
+  transform translate3d(0,0,0)
   &:after
     content ""
     display block
@@ -75,37 +78,61 @@ sliderout(fl-width, fl-height, output-background, output-color)
     border-left (pointer/2) solid transparent
     border-right (pointer/2) solid transparent
 
-
-backbutton(bdr-color, bg-color)
-  display block
+backbutton(bg-color = darker-color2, highlight-color = darker-color3)
   position relative
-  width 35px
-  height 22px
-  padding 0.46em 0.3em 0.37em 0.15em
-  margin 0.8em 0 0 1.8em
-  background-color bg-color
-  border-top 1px solid bdr-color
-  border-right 1px solid bdr-color
-  border-bottom 1px solid bdr-color
-  border-left 0px solid bdr-color
-  font-size 1.2em
+  float left
+  margin 1.1em 0 0 1.8em
   z-index 2
-  visibility hidden
-  opacity 0
+  user-select none
+  cursor pointer
+  background-color bg-color
+  height 30px
+  width 30px
+  padding 0
+  transform-origin 50% 50% 50%
+  transform rotate(-55deg) skew(0deg, 20deg)
+  z-index 0
+  -webkit-mask-image linear-gradient(-43deg, #000 0%, #000 50%, rgba(0,0,0,0) 50%, rgba(0,0,0,0) 100%)
+  html.notouch &:hover
+      background-color highlight-color
+  &:active,
+  &:focus
+      background-color highlight-color
+
+
+menubutton(bg-color = darker-color2, highlight-color = darker-color3)
+  position relative
+  float left
+  width 30px
+  height 18px
+  margin 1.1em 0 0 0.8em
+  z-index 2
+  user-select none
+  cursor pointer
+  border-top 6px solid bg-color
+  border-bottom 6px solid bg-color
+  html.notouch &:hover
+    border-top 6px solid highlight-color
+    border-bottom 6px solid highlight-color
+    &:before
+      background-color highlight-color
+  &:active,
+  &:focus
+    border-top 6px solid highlight-color
+    border-bottom 6px solid highlight-color
+    &:before
+      background-color highlight-color
   &:before
-    content ""
+    content ''
+    display block
     position absolute
-    top 3px
-    left -12px
+    top 50%
+    width 30px
+    height 6px
+    margin-top -3px
     background-color bg-color
-    border 1px solid bdr-color
-    height 25px
-    width 25px
-    padding 0 0 1px 0
-    transform rotate(45deg)
-    border-radius 3px
-    z-index 0
-    -webkit-mask-image linear-gradient(45deg, #000 48%, rgba(0,0,0,0) 50%)
+
+
 
 scrollview(trackcolor = none, scrollcolor = darker-color2, borders = 0 0 7px 7px)
   overflow-x hidden
@@ -127,14 +154,14 @@ scrollview(trackcolor = none, scrollcolor = darker-color2, borders = 0 0 7px 7px
     padding 0
     opacity 0
 
-listview()
+listview(list-color = darker-color1, list-highlight-color = darker-color2)
   width 100%
   height 95%
   margin 0 auto
   padding 0
   border-width 0px 0px 0px 0px
   border-style solid
-  border-color darken(darker-color1, 20%)
+  border-color darken(list-color, 20%)
   scrollview()
   li
     width (100% - 1px)
@@ -142,12 +169,12 @@ listview()
     display block
     border-width 0px 1px 1px 1px
     border-style solid
-    border-color darken(darker-color1, 20%)
+    border-color darken(list-color, 20%)
     box-sizing border-box
     &:first-child
       border-width 1px 1px 1px 1px
       border-style solid
-      border-color darken(darker-color1, 20%)
+      border-color darken(list-color, 20%)
       box-sizing border-box
     &:last-child
       margin-bottom (base-line-height * 5)
@@ -158,17 +185,18 @@ listview()
       padding 1em 0px 1em 0
       display block
       color lighter-color2
-      background-color darker-color1
+      background-color list-color
       html.notouch &:hover
-        background-color darker-color2
+        background-color list-highlight-color
       &:active
-        background-color darker-color2
+        background-color list-highlight-color
       span
         display block
         width 88%
         margin 0 15% 0 5%
 
-message()
+modal()
+  display none
   position fixed
   top 64px
   left 50%
@@ -180,7 +208,6 @@ message()
   margin-left -35%
   opacity 0
   visibility hidden
-  translate3d 0 0 0
   transition visibility 0s 0.5s, opacity 0.5s linear
   cursor pointer
   border-radius 3px
@@ -198,17 +225,21 @@ message()
     margin 0 auto
     padding 0
 
-.message
-  message()
-
-show()
+show(time = 300ms)
   opacity 1 !important
   visibility visible !important
-  translate3d 0 0 0
-  transition opacity 0.05s linear !important
+  transition opacity time linear !important
 
 .show
   show()
+
+hide(time = 300ms)
+  opacity 0
+  visibility hidden
+  transition opacity time linear
+
+.hide
+  hide()
 
 topbar()
   small()
@@ -224,30 +255,11 @@ topbar()
   border-width 0px 0px 1px 0px
   border-style solid
   border-color darken(darker-color1, 20%)
+  user-select none
   .topbar-inner
     grid(100%,100%)
     height 100%
     overflow hidden
-    #left-controls
-      grid-space(20%)
-      .back
-        backbutton(darker-color3, darker-color2)
-    #logo
-      grid-space(80%)
-      text-align center
-      padding-right 20%
-      margin-top 0.7em
-      font-size 2em
-
-    p
-      float left
-      margin 1.5em
-  button, .button
-    margin 1.4em 1em
-    font-weight bold
-    float left
-    border 0
-    small()
 
 .topbar
   topbar()
@@ -263,6 +275,119 @@ carousel(items=2, speed=300ms)
   position fixed
   top 0%
   left 0%
-  translate3d 0 0 0
   transition left speed cubic-bezier(0.000, 0.000, 0.000, 0.995)
-  overflow-x hidden
+
+flyinmenu(direction, speed=300ms, width = 72%)
+  grid(width, width)
+  position fixed
+  if direction is left
+    left -100%
+  if direction is right
+    left (100 + width) %
+  z-index 14 !important
+  height 100%
+  transform translated3d(0,0,0)
+  transition left speed cubic-bezier(0.000, 0.000, 0.000, 0.995)
+
+flyawaymenu(direction, speed = 300ms, width = 72%)
+  grid(width, width)
+  position fixed
+  if direction is left
+    left ( 0 - width) %
+  if direction is right
+    left 100%
+  z-index 14 !important
+  height 100%
+  transform translated3d(0,0,0)
+  transition left speed cubic-bezier(0.000, 0.000, 0.000, 0.995)
+
+debug = true unless debug is defined
+if debug is true
+  debug_display = block
+else
+  debug_display = none
+
+#flui-debug
+  display debug_display
+  position fixed
+  bottom 20px
+  left 20px
+  width 400px
+  height auto
+  padding 1em
+  border-radius 3px
+  background-color white
+  border 2px solid #aaa
+  color black
+  z-index 1000
+  transform translate3d(0,0,0)
+  &:before
+    content 'Fluidity UI Debugger'
+    width 100%
+    font-size 1.3em
+    border-bottom 1px solid #aaa
+    color #aaa
+    text-align center
+
+#flui-debug-console
+  height 200px
+  margin 1em
+  scrollview()
+
+#flui-debug-clear
+  position absolute
+  width 75px
+  padding 4px
+  height auto
+  text-align center
+  top 0.5em
+  right 0.5em
+  background-color #aaa
+  border-radius 2px
+  cursor pointer
+  &:hover
+    background-color black
+  &:before
+    content 'Clear'
+    color white
+    font-size 1em
+
+modalbuttons()
+  display block
+  float right
+  width 40%
+  margin 1em 5%
+
+#flui-modal
+  position fixed
+  display block
+  top 80px
+  width 50%
+  height auto
+  margin 0 23%
+  padding 2%
+  color white
+  background rgba(lighten(darker-color1,12%), 98%)
+  z-index 1000
+  border-radius 2px
+  opacity 0
+  visibility hidden
+  &:before
+    content "Confirm"
+    display block
+    width 100%
+    text-align center
+    height 30px
+    font-size 1.2em
+  #flui-modal-message
+    width 100%
+    margin 1em
+    text-align center
+  #flui-cancel
+    modalbuttons()
+    &:before
+      content "Cancel"
+  #flui-confirm
+    modalbuttons()
+    &:before
+      content "Ok"
