@@ -93,31 +93,30 @@ $ ->
       sliders.map ->
         flui.slider $(this)
 
-    show: (el)->
-      el.css 'display', 'inline-block'
+    show: (el) ->
+      el.css 'display', 'block'
       setTimeout ->
         el.addClass('show')
-      , 0.1
+      , 400
 
     hide: (el, time)->
       el.removeClass('show')
-      setTimeout ->
+      if time is 0 or "undefined"
         el.css 'display', 'none'
-      , time
+      else
+        setTimeout (el)->
+          el.css 'display', 'none'
+        , time
 
     lCarousel: (el) ->
-      console.log "Left -- lCarousel"
       pos = parseInt el.css 'left'
       if isNaN(pos)
         pos = 0
-      console.log pos
       el.css 'left', "#{pos - 100}%"
 
     rCarousel: (el) ->
-      console.log "Right -- rCarousel"
       pos = parseInt el.css 'left'
-      console.log pos
-      el.css 'left', "#{pos + 100}%"
+      el.css 'left', (pos + 100) + "%"
 
     flyInMenu: (el, direction) ->
       left = parseInt el.css('left')

@@ -1,6 +1,8 @@
 $ ->
   #Setup
-  flui.hide $('.back')
+  flui.hide $('.back'), 0
+  flui.show $('.leftmenu')
+  flui.show $('.rightmenu')
   main = $('#container')
 
   #Clicks
@@ -13,16 +15,6 @@ $ ->
       e.preventDefault()
       flui.flyInMenu($("#rightslidemenu"), 'right')
 
-    $('sidebar ul li').click ()->
-      flui.lCarousel(main)
-      flui.hide $('.leftmenu'), 0
-      flui.show $('.back')
-
-    $('.back').click ()->
-      flui.rCarousel(main)
-      flui.hide $('.back'), 0
-      flui.show $('.leftmenu')
-
   # Touches
   if flui.touchable
     flui.inscrollable $('.topbar')
@@ -31,14 +23,14 @@ $ ->
     flui.scrollable $("#leftslidemenu ul")
     flui.scrollable $("#rightslidemenu ul")
 
-    $('sidebar ul li').on 'tap', ->
+    $('sidebar ul li').tap ->
+      flui.hide $('.leftmenu'), 300
       flui.lCarousel(main)
-      flui.hide $('.leftmenu'), 0
       flui.show $('.back')
 
-    $('.back').on 'tap', ->
+    $('.back').tap ->
+      flui.hide $('.back'), 300
       flui.rCarousel(main)
-      flui.hide $('.back'), 0
       flui.show $('.leftmenu')
 
     $('.leftmenu').on 'tap', (e)->
@@ -48,7 +40,8 @@ $ ->
       flui.flyAwayMenu($("#leftslidemenu"), main, 'left')
 
     $('.rightmenu').tap (e)->
-      e.preventDefault()
-      flui.flyInMenu($("#rightslidemenu"), 'right')
+     e.preventDefault()
+     flui.flyInMenu($("#rightslidemenu"), 'right')
+
     $("#rightslidemenu").swipeRight ->
-      flui.flyInMenu($("#rightslidemenu"), 'right')
+     flui.flyInMenu($("#rightslidemenu"), 'right')

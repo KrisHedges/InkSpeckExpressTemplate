@@ -3,7 +3,6 @@ html
   height 100%
   margin 0
   padding 0
-  position relative
 
 .preload *
   transition none !important
@@ -79,6 +78,9 @@ sliderout(fl-width, fl-height, output-background, output-color)
     border-right (pointer/2) solid transparent
 
 backbutton(bg-color = darker-color2, highlight-color = darker-color3)
+  opacity 0
+  visibility hidden
+  transition opacity 300ms linear !important
   position relative
   float left
   margin 1.1em 0 0 1.8em
@@ -101,6 +103,9 @@ backbutton(bg-color = darker-color2, highlight-color = darker-color3)
 
 
 menubutton(bg-color = darker-color2, highlight-color = darker-color3)
+  opacity 0
+  visibility hidden
+  transition opacity 300ms linear !important
   position relative
   float left
   width 30px
@@ -208,7 +213,7 @@ modal()
   margin-left -35%
   opacity 0
   visibility hidden
-  transition visibility 0s 0.5s, opacity 0.5s linear
+  transition opacity 0.3s linear
   cursor pointer
   border-radius 3px
   border 1px solid darker-color2
@@ -228,7 +233,6 @@ modal()
 show(time = 300ms)
   opacity 1 !important
   visibility visible !important
-  transition opacity time linear !important
 
 .show
   show()
@@ -236,7 +240,6 @@ show(time = 300ms)
 hide(time = 300ms)
   opacity 0
   visibility hidden
-  transition opacity time linear
 
 .hide
   hide()
