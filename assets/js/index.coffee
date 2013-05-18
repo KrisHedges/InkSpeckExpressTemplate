@@ -3,7 +3,7 @@ $ ->
   flui.hide $('.back')
   flui.show $('.leftmenu')
   flui.show $('.rightmenu')
-  flui.delayTransitionsOnLoad(300)
+  flui.preloadTransitions(1000)
 
   main = $('#container')
 

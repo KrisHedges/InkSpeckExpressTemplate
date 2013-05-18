@@ -25,12 +25,13 @@ $ ->
     touchable: touchable
     mobile: mobile
 
-    delayTransitionsOnLoad: (time)->
+    preloadTransitions: (time)->
       if time is 0 or time is "undefined"
-        time = 300
-      setTimeout ->
-        $('html').removeClass 'preload'
-      , time
+        $('html').removeClass 'flui-preload'
+      else
+        setTimeout ->
+          $('html').removeClass 'flui-preload'
+        , time
 
     console: (message) ->
       initDebugger() unless $("#flui-debug").length > 0
@@ -149,13 +150,11 @@ $ ->
       width = parseInt el.css('width')
       screenwidth = parseInt $('body').css('width')
       menuwidth = Math.round(((width / screenwidth) * 100) * -1)
-      mainleft = parseInt main.css('left')
-      diff = left - 100
       if direction
         if direction is 'left'
           if left < -1
             el.css 'left', "0%"
-            main.css 'left', "#{left * -1}%"
+            main.css 'left', "#{menuwidth * -1}%"
           else
             el.css 'left', "#{menuwidth}%"
             main.css 'left', "0%"
@@ -199,7 +198,7 @@ $ ->
     # -------------------
     touchableForms: ->
       if touchable
-        $('html').removeClass('notouch')
+        $('html').removeClass('flui-notouch')
 
         txtinputs = $("select, textarea, input[type='text'], input[type='password'], input[type='number'], input[type='email'], input[type='url'], input[type='search'], input[type='tel'], input[type='date'], input[type='datetime'], input[type='datetime-local'], input[type='color']")
 
